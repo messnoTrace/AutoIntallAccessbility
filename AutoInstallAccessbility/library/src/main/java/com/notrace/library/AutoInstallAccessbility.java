@@ -26,7 +26,7 @@ public class AutoInstallAccessbility extends AccessibilityService {
         {
             CharSequence packageName=event.getPackageName();
             //安装，sec是三星权限界面
-            if(packageName.toString().contains("packageinstaller")||packageName.toString().contains("sec"))
+            if(packageName.toString().contains("packageinstaller")||packageName.toString().contains("sec")||packageName.toString().contains("securitycenter"))
             {
                 //包名中有installer之类的安装界面
                 for(int i=0;i<keys.length;i++) {
@@ -36,10 +36,12 @@ public class AutoInstallAccessbility extends AccessibilityService {
                     if (list != null && list.size() > 0) {
                         for (int j = 0; j < list.size(); j++) {
                             {
-                                if (list.get(j).getClassName().equals("android.widget.Button")&&list.get(j).isEnabled()) {
+
+                                //TODO 魅族最TMD恶心，把button换成了textview，
+                                //com.android.packageinstaller:id/action_positive
+//                                if (list.get(j).getClassName().equals("android.widget.Button")&&list.get(j).isEnabled()) {
                                     list.get(j).performAction(AccessibilityNodeInfo.ACTION_CLICK);
-                                    return;
-                                }
+//                                }
                             }
                         }
                     }
